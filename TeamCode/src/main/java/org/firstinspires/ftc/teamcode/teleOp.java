@@ -7,9 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 @TeleOp(name="Tele-Op")
 public class teleOp extends OpMode {
-    public static void main(String[] args) {
-        
-    }
+    
     public DcMotor leftFrontDrive, rightFrontDrive, leftBackDrive, rightBackDrive, armMotor1, armMotor2, carouselSpinner;
     public double speed, armspeed;
     public CRServo claw1, claw2;
