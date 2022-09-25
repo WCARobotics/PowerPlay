@@ -49,12 +49,6 @@ public class teleOp extends OpMode {
         } else {
             move(0, 0);
         }
-
-
-
-
-
-
         if (gamepad1.left_bumper) {
             speed = 0.4;
         } else {
@@ -63,7 +57,6 @@ public class teleOp extends OpMode {
         //emergency button!!
         if (gamepad1.right_bumper && gamepad1.left_bumper) {
             move(.6,.6);
-
         } else {
             move(0, 0);
 
