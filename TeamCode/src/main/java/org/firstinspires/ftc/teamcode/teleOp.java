@@ -17,7 +17,7 @@ public class teleOp extends OpMode {
         rightFrontDrive = hardwareMap.get(DcMotor.class, "front right");
         leftBackDrive = hardwareMap.get(DcMotor.class, "back left");
         rightBackDrive = hardwareMap.get(DcMotor.class, "back right");
-        speed = 0.8;
+        speed = 0;
         //set direction for motors
         leftFrontDrive.setDirection(DcMotor.Direction.FORWARD);
         rightFrontDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -27,40 +27,16 @@ public class teleOp extends OpMode {
 
     public void loop() {
         //move
-        if (gamepad1.dpad_right) {
-            move(speed, -speed);
-        } else if (gamepad1.dpad_left) {
-            move(-speed, speed);
-        } else if (gamepad1.dpad_down) {
-            move(-speed, -speed);
-        } else if (gamepad1.dpad_up) {
-            move(speed, speed);
-        } else {
-            move(0, 0);
-        }
-        if (gamepad1.left_stick_x > 0) {
-            move(gamepad1.left_stick_x, -gamepad1.left_stick_x);
-        } else if (gamepad1.left_stick_x < 0) {
-            move(-gamepad1.left_stick_x,gamepad1.left_stick_x);
-        } else if (gamepad1.left_stick_y > 0) {
-            move(-gamepad1.left_stick_y, -gamepad1.left_stick_y);
-        } else if (gamepad1.left_stick_y < 0) {
-            move(gamepad1.left_stick_y, gamepad1.left_stick_y);
-        } else {
-            move(0, 0);
-        }
-        if (gamepad1.left_bumper) {
-            speed = 0.4;
-        } else {
-            speed = 0.8;
-        }
-        //emergency button!!
-        if (gamepad1.right_bumper && gamepad1.left_bumper) {
-            move(.6,.6);
-        } else {
-            move(0, 0);
-
-        }
+       speed=gamepad1.right_stick_y;
+       move(-speed,speed);
+       if(gamepad1.right_stick_x != 0){
+           if (gamepad1.right_stick_x < 0) {
+               move(speed / 2, speed);
+           }else{
+               move(speed, speed/2);
+           }
+       }
+       
 
 
 
