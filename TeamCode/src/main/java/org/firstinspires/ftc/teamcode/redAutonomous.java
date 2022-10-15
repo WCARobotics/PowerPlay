@@ -15,7 +15,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 public class redAutonomous extends LinearOpMode {
 
     public DcMotor frontLeftWheel, frontRightWheel, backLeftWheel, backRightWheel; //arm;
-    public DistanceSensor frontDistance, leftDistance, backDistance, rightDistance;
+    public DistanceSensor frontDistance/*, leftDistance, backDistance, rightDistance*/;
     //public CRServo claw;
 
 
@@ -27,9 +27,10 @@ public class redAutonomous extends LinearOpMode {
         backLeftWheel = hardwareMap.get(DcMotor.class, "back left");
         backRightWheel = hardwareMap.get(DcMotor.class, "back right");
         frontDistance = hardwareMap.get(DistanceSensor.class, "distance front");
-        leftDistance = hardwareMap.get(DistanceSensor.class, "distance left");
+        /*leftDistance = hardwareMap.get(DistanceSensor.class, "distance left");
         backDistance = hardwareMap.get(DistanceSensor.class, "distance back");
         rightDistance = hardwareMap.get(DistanceSensor.class, "distance right");
+         */
         /*arm = hardwareMap.get(DcMotor.class, "arm motor");
         claw = hardwareMap.get(CRServo.class, "claw motor");
 
@@ -45,15 +46,14 @@ public class redAutonomous extends LinearOpMode {
         claw.setDirection(DcMotorSimple.Direction.FORWARD);
         */
         double front = frontDistance.getDistance(DistanceUnit.INCH);
-        double left = leftDistance.getDistance(DistanceUnit.INCH);
+        /*double left = leftDistance.getDistance(DistanceUnit.INCH);
         double back = backDistance.getDistance(DistanceUnit.INCH);
         double right = rightDistance.getDistance(DistanceUnit.INCH);
-        for (int i = 0; i < 10; i++) {
-            Log.i(null, front+"");
-            Log.i(null, front+"");
-            Log.i(null, front+"");
-            Log.i(null, front+"");
-            sleep(30000);
+         */
+        for (int i = 0; i < 30; i++) {
+            System.out.println(front+ ": front ");
+            front = frontDistance.getDistance(DistanceUnit.INCH);
+            sleep(1000);
         }
 
 
