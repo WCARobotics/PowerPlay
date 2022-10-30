@@ -9,7 +9,8 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @TeleOp(name="Tele-Op")
 public class teleOp extends OpMode {
-    //the different parts of the robot
+    //control hub: 0 is front right, 1 is front left, 2 is back left, 3 is back right
+    //expansion hub: arm = 0, arm2 is 1
     public DcMotor frontLeftWheel, frontRightWheel, backLeftWheel, backRightWheel, arm, arm2;
     public CRServo claw;
 
@@ -38,8 +39,7 @@ public class teleOp extends OpMode {
         frontRightWheel.setDirection(DcMotor.Direction.REVERSE);
         backLeftWheel.setDirection(DcMotor.Direction.FORWARD);
         backRightWheel.setDirection(DcMotor.Direction.REVERSE);
-        arm.setDirection(DcMotorSimple.Direction.FORWARD);
-        claw.setDirection(CRServo.Direction.FORWARD);
+         arm.setDirection(DcMotorSimple.Direction.FORWARD);
 
     }
 
@@ -48,7 +48,7 @@ public class teleOp extends OpMode {
         x = gamepad1.left_stick_x;
         //coordinate position of the y value of the joystick
         y = -gamepad1.left_stick_y;
-        //????????????
+        //This is to tell the angle of the joystick away from the positive x-coordinate line ranging from 0to 360 degrees to then be turned into actual coordinates
         theta = Math.atan2(y, x);
         //To tell how far away the joystick is from the center to tell how much power the driver wants in a certain direction
         power = Math.hypot(x, y);
@@ -58,11 +58,9 @@ public class teleOp extends OpMode {
         max = Math.max(Math.abs(sin), Math.abs(cos));
         //speed of the arm
         armSpeed = 1.0;
-        //speed when the robot turns but also something else?????????????????????????////
+        //This is meant to always reset the turn speed so if the button is not pressed then it will not keep going
         turnSpeed = 0.0;
-        /*
-        double clawSpeed = 1.0;
-         */
+
 
         //controls when the robot turns by setting turnSpeed to a different value
         if (gamepad1.left_bumper) {
@@ -70,13 +68,14 @@ public class teleOp extends OpMode {
         } else if (gamepad1.right_bumper) {
             turnSpeed = 0.5;
         }
-        //maybe add else {turnSpeed = 0;}???????????????????
+
 
         for (int i = 0; i < wheels.length; i++) {
             //code for the front right and back left wheels
             if (i % 2 == 0) {
                 wheels[i] = (power * (sin / max));
-                //???????????????????????????????????????
+                //This is meant to tell whether the wheel is right or left to then tell how the turn speed will affect it because right
+                // have to be subtracted and left is added and the negative turn speed will deal with if the other bumper is pressed
                 if (i == 0) {
                     wheels[0] -= turnSpeed;
                 } else {
@@ -92,7 +91,8 @@ public class teleOp extends OpMode {
                     wheels[1] += turnSpeed;
                 }
             }
-            //????????????????????????????????????????????????????????????????????????, why cant wheels[i] be set to 1
+            //This is meant to keep the ratios the same so that if it does go over the 1 then the ratio will stay
+            // the same and kept as full power as they can be
             if ((power + Math.abs(turnSpeed)) > 1) {
                 wheels[i] /= power + turnSpeed;
             }
@@ -121,12 +121,12 @@ public class teleOp extends OpMode {
             arm.setPower(0);
             arm2.setPower(0);
         }
-//POSSIBLE claw code
-        if (gamepad1.x) {
-            claw.setPower(1);
-        } else if (gamepad1.b) {
-            claw.setPower(-1);
-        } else {
+        //claw controls
+        if(gamepad1.x){
+            claw.setPower(1.0);
+        }else if(gamepad1.b) {
+            claw.setPower(-1.0);
+        }else{
             claw.setPower(0);
         }
     }
