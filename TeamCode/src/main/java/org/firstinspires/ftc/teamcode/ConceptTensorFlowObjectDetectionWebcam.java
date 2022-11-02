@@ -27,9 +27,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.robotcontroller.external.samples;
+package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import java.util.List;
@@ -50,7 +50,7 @@ import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
  * is explained below.
  */
 @TeleOp(name = "Concept: TensorFlow Object Detection Webcam", group = "Concept")
-@Disabled
+
 public class ConceptTensorFlowObjectDetectionWebcam extends LinearOpMode {
 
     /*
@@ -60,7 +60,7 @@ public class ConceptTensorFlowObjectDetectionWebcam extends LinearOpMode {
      * has been downloaded to the Robot Controller's SD FLASH memory, it must to be loaded using loadModelFromFile()
      * Here we assume it's an Asset.    Also see method initTfod() below .
      */
-    private static final String TFOD_MODEL_ASSET = "PowerPlay.tflite";
+    private static final String TFOD_MODEL_ASSET = "model_unquant.tflite";
     // private static final String TFOD_MODEL_FILE  = "/sdcard/FIRST/tflitemodels/CustomTeamModel.tflite";
 
 
@@ -83,7 +83,7 @@ public class ConceptTensorFlowObjectDetectionWebcam extends LinearOpMode {
      * and paste it in to your code on the next line, between the double quotes.
      */
     private static final String VUFORIA_KEY =
-            " -- YOUR NEW VUFORIA KEY GOES HERE  --- ";
+            "AY+LAO//////AAABmXqpfGFoHkhWrS1QLc/3RBMitc3sWaySydW66iqgCgULFQBcw/vHIj1o9YeqLzsHNYgoJ4bigISHSEJ0aqFhiZ1r+rRJ0HhFgL4V88oT/6FlJFzRDwhtVX+72HEoEIZgiH2vZD5i5mQp11U9rz+oE/07CwUzmABaW9i4gI50lPJhve1K6xRd4ydgjVhdiJ/Ayz6X8mK+LBnX10KxS0cCEtbCi2texH/X9W+iMXoXk9bzfnKi8X0xJxOAO9F5R2Ja9wBvEZrQQFhf/e4wegFY3fTYqsKtRTaENLYtQFuPqelbRuFRR2qcIZ9Q677IXEM+Ydagzu1bj2lBc6ueZf5SYn0iaPOIWRp4ilLNlRj5wyZ4 ";
 
     /**
      * {@link #vuforia} is the variable we will use to store our instance of the Vuforia
